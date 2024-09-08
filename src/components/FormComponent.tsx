@@ -26,7 +26,7 @@ export const FormComponent = () => {
           />
         </div>
         <div className="flex items-center mx-2 my-6 sm:my-10">
-          <button className="capitalize w-full sm:w-2/3 text-gray-800 p-4 bg-lime-400 rounded-full flex gap-2 items-center justify-center">
+          <button className="capitalize w-full sm:w-2/3 text-gray-800 p-4 bg-[#D8DB2F] rounded-full flex gap-2 items-center justify-center">
             <BiCalculator className="text-dark" />
             Calculate Repayment
           </button>
