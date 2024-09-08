@@ -12,7 +12,9 @@ export const CalculatorResultComponent = () => {
       <div className="flex px-4 shadow-green-800 shadow-md items-start w-[90%] rounded-lg flex-col mt-10">
         <div className="flex gap-4 flex-col">
           <p className="text-md text-gray-400">Monthly Repayment</p>
-          <p className="text-6xl text-[#D8DB2F] font-semibold">$ 1400.00</p>
+          <p className="text-6xl text-[#D8DB2F] font-semibold font-plus-jakarta-sans">
+            $ 1400.00
+          </p>
         </div>
         <hr className="w-full my-10" />
         <div className="flex gap-4 flex-col">

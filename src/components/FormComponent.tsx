@@ -1,26 +1,50 @@
 import { BiCalculator } from "react-icons/bi";
 import { InputElement } from "./ui-elements/InputElement";
 import { RadioElement } from "./ui-elements/RadioElement";
+import { formInputs } from "../App";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 export const FormComponent = () => {
+  const { register, handleSubmit } = useForm<formInputs>();
+
+  const onSubmit: SubmitHandler<formInputs> = (data) => {
+    console.log(data);
+  };
+
   return (
     <div className="w-full my-12">
-      <form onSubmit={(e) => e.preventDefault()}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <InputElement
-          name="Mortgage Amount"
+          register={register}
+          name="amount"
           placeholder="Enter your mortgage amount"
-          value={0}
           prefix="$ "
         />
         <div className="flex gap-2 w-full my-4 flex-col sm:flex-row">
-          <InputElement name="Mortage Term" value={0} suffix=" years" />
-          <InputElement name="Interest Rate" value={0} suffix=" %" />
+          <InputElement
+            register={register}
+            name="years"
+            value={0}
+            suffix=" years"
+          />
+          <InputElement
+            register={register}
+            name="interest"
+            value={0}
+            suffix=" %"
+          />
         </div>
         <div>
           <p className="mx-2 text-gray-500">Mortgage Type</p>
-          <RadioElement name="Morgage Type" value="Repayment" type="radio" />
           <RadioElement
-            name="Morgage Type"
+            name="mortgageType"
+            register={register}
+            value="Repayment"
+            type="radio"
+          />
+          <RadioElement
+            register={register}
+            name="mortgageType"
             value="Interest Only"
             type="radio"
           />

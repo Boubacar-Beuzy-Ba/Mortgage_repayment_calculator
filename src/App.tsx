@@ -3,6 +3,14 @@ import { CalculatorResultComponent } from "./components/CalculatorResultComponen
 import { FormComponent } from "./components/FormComponent";
 import { ResultInformationComponent } from "./components/ResultInformationComponent";
 
+
+export type formInputs = {
+  amount: number;
+  terms: number;
+  rate: number;
+  mortgageType: string;
+};
+
 function App() {
   return (
     <div className="min-h-[60vh] mx-auto md:mx-96 md:my-28 flex md:flex-row flex-col md:max-w-1/2 bg-white rounded-tl-lg rounded-bl-lg">
