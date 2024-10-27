@@ -1,15 +1,23 @@
 import { BiCalculator } from "react-icons/bi";
 import { InputElement } from "./ui-elements/InputElement";
-import { RadioElement } from "./ui-elements/RadioElement";
-import { formInputs } from "../App";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { FieldErrors, UseFormHandleSubmit, UseFormRegister } from "react-hook-form";
+import { FormInputs } from "../App";
+import { Radio } from "antd";
 
-export const FormComponent = () => {
-  const { register, handleSubmit } = useForm<formInputs>();
+export type FormProps = {
+  register: UseFormRegister<FormInputs>;
+  handleSubmit: UseFormHandleSubmit<FormInputs>;
+  onSubmit: (data: FormInputs) => void;
+  errors: FieldErrors<FormInputs>;
+};
 
-  const onSubmit: SubmitHandler<formInputs> = (data) => {
-    console.log(data);
-  };
+ const options = [
+   { label: "Repayment", value: "Repayment" },
+   { label: "Interest Only", value: "Interest Only" },
+ ];
+
+export const FormComponent = ({register, handleSubmit, onSubmit, errors}: FormProps) => {
+
 
   return (
     <div className="w-full my-12">
@@ -19,34 +27,30 @@ export const FormComponent = () => {
           name="amount"
           placeholder="Enter your mortgage amount"
           prefix="$ "
+          errors={errors.amount}
         />
         <div className="flex gap-2 w-full my-4 flex-col sm:flex-row">
           <InputElement
             register={register}
-            name="years"
-            value={0}
+            name="terms"
             suffix=" years"
+            errors={errors.terms}
           />
           <InputElement
             register={register}
-            name="interest"
-            value={0}
+            name="rate"
             suffix=" %"
+            errors={errors.rate}
           />
         </div>
         <div>
           <p className="mx-2 text-gray-500">Mortgage Type</p>
-          <RadioElement
-            name="mortgageType"
-            register={register}
-            value="Repayment"
-            type="radio"
-          />
-          <RadioElement
-            register={register}
-            name="mortgageType"
-            value="Interest Only"
-            type="radio"
+          <Radio.Group
+            block
+            options={options}
+            optionType="button"
+            className="w-full my-4"
+            {...register("mortgageType")}
           />
         </div>
         <div className="flex items-center mx-2 my-6 sm:my-10">
